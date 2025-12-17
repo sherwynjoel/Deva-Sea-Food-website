@@ -54,6 +54,8 @@ a {
   width: 100%;
   padding: 0;
   margin: 0;
+  position: relative;
+  z-index: 10;
 }
 
 .brand-banner-image {
@@ -65,6 +67,8 @@ a {
   object-fit: cover;
   object-position: center center;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* Adjust banner image behaviour on smaller screens so it doesn't look over-zoomed */
@@ -747,6 +751,26 @@ a {
   color: #93bfe9;
 }
 
+.pre-footer-banner {
+  width: 100%;
+  background: #031633;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  z-index: 5;
+}
+
+.pre-footer-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
 .site-footer {
   background: radial-gradient(circle at top, #021027 0, #020617 60%, #01030a 100%);
   color: #93a6c8;
@@ -837,9 +861,11 @@ a {
 
 .footer-bottom-inner {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
 }
 
 @media (max-width: 960px) {
@@ -927,11 +953,17 @@ a {
     margin-top: 1rem;
   }
 
-  .footer-inner,
-  .footer-bottom-inner {
+  .footer-inner {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+
+  .footer-bottom-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
   }
 }
 
@@ -1089,15 +1121,7 @@ a {
   transform: translateY(0);
 }
 
-/* Brand banner image animation */
-.brand-banner-image {
-  animation: fadeIn 1s ease-out;
-  transition: transform 0.3s ease-out;
-}
-
-.brand-banner-image:hover {
-  transform: scale(1.02);
-}
+/* Brand banner image - animations removed */
 
 /* Navigation animations */
 .nav-links a {

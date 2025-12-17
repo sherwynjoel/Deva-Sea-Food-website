@@ -91,16 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Parallax effect for hero section (subtle)
-  const hero = document.querySelector(".hero");
-  if (hero) {
-    window.addEventListener("scroll", () => {
-      const scrolled = window.pageYOffset;
-      if (scrolled < window.innerHeight) {
-        hero.style.transform = `translateY(${scrolled * 0.3}px)`;
-      }
-    });
-  }
+  // Parallax effect removed to prevent banner layering issues
 });
 
 
