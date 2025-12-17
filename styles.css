@@ -48,19 +48,23 @@ a {
 .brand-banner {
   background: #031633;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.brand-banner .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
   padding: 0;
+  margin: 0;
 }
 
 .brand-banner-image {
   width: 100%;
+  max-width: 100%;
   height: auto;
   min-height: 500px;
   display: block;
   object-fit: cover;
-  object-position: center;
+  object-position: center center;
+  margin: 0 auto;
 }
 
 /* Adjust banner image behaviour on smaller screens so it doesn't look over-zoomed */
@@ -942,5 +946,227 @@ a {
 
   .form-row-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out;
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.animate-scale {
+  animation: scaleIn 0.6s ease-out;
+}
+
+/* Hero section animations */
+.hero-content {
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-visual {
+  animation: slideInRight 1s ease-out 0.2s both;
+}
+
+.hero h1 {
+  animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.hero-text {
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.hero-actions {
+  animation: fadeInUp 0.8s ease-out 0.7s both;
+}
+
+/* Section animations */
+.section {
+  animation: fadeIn 0.8s ease-out;
+  opacity: 1;
+}
+
+.feature-card,
+.product-card,
+.column-card,
+.quality-item {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.feature-card:hover,
+.product-card:hover,
+.column-card:hover,
+.quality-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(17, 41, 92, 0.12);
+}
+
+/* Button animations */
+.btn {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, background 0.2s ease-out;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Brand banner image animation */
+.brand-banner-image {
+  animation: fadeIn 1s ease-out;
+  transition: transform 0.3s ease-out;
+}
+
+.brand-banner-image:hover {
+  transform: scale(1.02);
+}
+
+/* Navigation animations */
+.nav-links a {
+  transition: color 0.2s ease-out;
+}
+
+.nav-links a::after {
+  transition: width 0.3s ease-out;
+}
+
+/* Form animations */
+.contact-form {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+  transition: border-color 0.3s ease-out, box-shadow 0.3s ease-out, background 0.3s ease-out;
+}
+
+/* Footer animation */
+.site-footer {
+  animation: fadeIn 0.8s ease-out;
+}
+
+/* Stagger animation for cards */
+.cards-grid .feature-card:nth-child(1) {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.cards-grid .feature-card:nth-child(2) {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.cards-grid .feature-card:nth-child(3) {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.cards-grid .feature-card:nth-child(4) {
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.cards-grid .feature-card:nth-child(5) {
+  animation: fadeInUp 0.6s ease-out 0.5s both;
+}
+
+.cards-grid .feature-card:nth-child(6) {
+  animation: fadeInUp 0.6s ease-out 0.6s both;
+}
+
+.products-grid .product-card:nth-child(1) {
+  animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.products-grid .product-card:nth-child(2) {
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.products-grid .product-card:nth-child(3) {
+  animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
