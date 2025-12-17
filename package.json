@@ -1,0 +1,18 @@
+{
+  "name": "deva-sea-food-website",
+  "version": "1.0.0",
+  "description": "Deva Sea Food - Premium Seafood Exports Website",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "python -m http.server 8000",
+    "dev": "python -m http.server 8000"
+  },
+  "keywords": [
+    "seafood",
+    "export",
+    "website"
+  ],
+  "author": "Deva Sea Food",
+  "license": "MIT"
+}
+
