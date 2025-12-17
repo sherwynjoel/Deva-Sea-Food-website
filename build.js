@@ -13,8 +13,12 @@ const filesToCopy = [
   'main.js',
   'styles.css',
   'banner.png',
+  'logo.png',
   'Gemini_Generated_Image_ypm05bypm05bypm0.png',
-  'WhatsApp Image 2025-12-15 at 10.09.01 AM.jpeg'
+  'WhatsApp Image 2025-12-15 at 10.09.01 AM.jpeg',
+  'vid.mp4',
+  'sitemap.xml',
+  'robots.txt'
 ];
 
 console.log('🚀 Building Deva Sea Food website...\n');
