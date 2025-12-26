@@ -2,8 +2,8 @@
 node_modules/
 package-lock.json
 
-# Build output
-dist/
+# Build output (optional - uncomment if you don't want to commit dist folder)
+# dist/
 build/
 
 # IDE
@@ -19,4 +19,14 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Environment variables (if you add any)
+.env
+.env.local
+
+# EmailJS credentials (keep private)
+# Note: Make sure to replace YOUR_PUBLIC_KEY, YOUR_SERVICE_ID, etc. in main.js
+# before committing if you want to keep them private
+
+
 

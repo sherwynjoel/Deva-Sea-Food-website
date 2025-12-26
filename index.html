@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
     
     <!-- Primary Meta Tags -->
     <title>Deva Sea Food | Premium Seafood, Perfected for the World</title>
@@ -193,6 +193,7 @@
             <li><a href="#hero">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#products">Products</a></li>
+            <li><a href="#certifications">Certifications</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -530,6 +531,46 @@
         </div>
       </section>
 
+      <!-- Certifications -->
+      <section id="certifications" class="section section-certifications">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Our Certifications</h2>
+            <p>
+              Deva Sea Food maintains the highest standards of food safety and quality, certified by leading international and national regulatory bodies.
+            </p>
+          </div>
+          <div class="certifications-carousel-wrapper">
+            <div class="certifications-grid">
+              <div class="certification-item">
+                <img src="1.jpeg" alt="Export Inspection Council (EIC), Government of India" class="certification-logo" />
+              </div>
+              <div class="certification-item">
+                <img src="2.webp" alt="BRCGS Food Safety Certificated" class="certification-logo" />
+              </div>
+              <div class="certification-item">
+                <img src="3.jpeg" alt="Marine Products Export Development Authority (MPEDA), India" class="certification-logo" />
+              </div>
+              <div class="certification-item">
+                <img src="4.jpeg" alt="GMP Certified Practice" class="certification-logo" />
+              </div>
+              <div class="certification-item">
+                <img src="5.jpeg" alt="HACCP Certified" class="certification-logo" />
+              </div>
+              <div class="certification-item">
+                <img src="6.jpeg" alt="FSSAI" class="certification-logo" />
+              </div>
+              <div class="certification-item">
+                <img src="7.jpeg" alt="European Union (EU) Flag" class="certification-logo" />
+              </div>
+            </div>
+            <!-- Gradient overlays for carousel fade effect -->
+            <div class="carousel-gradient carousel-gradient-left"></div>
+            <div class="carousel-gradient carousel-gradient-right"></div>
+          </div>
+        </div>
+      </section>
+
       <!-- Contact -->
       <section id="contact" class="section section-contact">
         <div class="container split">
@@ -551,38 +592,41 @@
             </div>
           </div>
           <div class="section-aside">
-            <form class="contact-form" onsubmit="return false;">
+            <form class="contact-form" id="contactForm">
               <div class="form-row">
-                <label for="name">Name</label>
-                <input id="name" type="text" placeholder="Your full name" />
+                <label for="name">Name *</label>
+                <input id="name" name="name" type="text" placeholder="Your full name" required />
               </div>
               <div class="form-row">
-                <label for="company">Company</label>
-                <input id="company" type="text" placeholder="Your company name" />
+                <label for="company">Company *</label>
+                <input id="company" name="company" type="text" placeholder="Your company name" required />
               </div>
               <div class="form-row form-row-grid">
                 <div>
-                  <label for="email">Email</label>
-                  <input id="email" type="email" placeholder="you@example.com" />
+                  <label for="email">Email *</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" required />
                 </div>
                 <div>
-                  <label for="country">Country</label>
-                  <input id="country" type="text" placeholder="Country of import" />
+                  <label for="country">Country *</label>
+                  <input id="country" name="country" type="text" placeholder="Country of import" required />
                 </div>
               </div>
               <div class="form-row">
-                <label for="requirements">Requirements</label>
+                <label for="requirements">Requirements *</label>
                 <textarea
                   id="requirements"
+                  name="requirements"
                   rows="4"
                   placeholder="Briefly describe your product, volume, and certification needs."
+                  required
                 ></textarea>
               </div>
-              <button class="btn btn-primary btn-block" type="submit">
-                Submit Enquiry (static demo)
+              <div id="formMessage" class="form-message" style="display: none;"></div>
+              <button class="btn btn-primary btn-block" type="submit" id="submitBtn">
+                Submit Enquiry
               </button>
               <p class="form-note">
-                This is a static demo form. Connect it to your email or CRM system when the backend is ready.
+                * Required fields. Your information will be sent securely to our team.
               </p>
             </form>
           </div>
@@ -613,14 +657,6 @@
           <p>Phone: +91-00000-00000 (example)</p>
           <p>Email: info@devaseafood.com (example)</p>
         </div>
-        <div class="footer-col footer-video">
-          <div class="video-container">
-            <video class="footer-video-element" autoplay muted loop playsinline aria-label="Deva Sea Food seafood processing and quality control video">
-              <source src="vid.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </div>
       </div>
       <div class="footer-bottom">
         <div class="container footer-bottom-inner">
@@ -630,6 +666,20 @@
       </div>
     </footer>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <!-- Three.js for 3D Model -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+    <!-- 3D Model Container -->
+    <div id="crab3d-container" class="crab3d-container"></div>
     <script src="main.js"></script>
+    <!-- Load GLTFLoader -->
+    <script type="module">
+      import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+      window.GLTFLoader = GLTFLoader;
+      console.log('✅ GLTFLoader loaded and available globally');
+    </script>
+    <!-- Simple 3D Crab Script -->
+    <script src="crab3d-simple.js"></script>
   </body>
   </html>

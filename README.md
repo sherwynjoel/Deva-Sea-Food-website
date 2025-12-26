@@ -4,11 +4,14 @@ A modern, responsive website for Deva Sea Food, showcasing premium pasteurized c
 
 ## 🌊 Features
 
-- **Responsive Design** - Works perfectly on desktop, tablet, and mobile devices
+- **Responsive Design** - Fully optimized for desktop, tablet, and mobile devices
 - **Modern UI/UX** - Clean, professional design with blue ocean theme
-- **Smooth Animations** - Engaging scroll animations and hover effects
-- **SEO Optimized** - Semantic HTML structure
+- **Smooth Animations** - Engaging scroll animations and auto-scrolling certifications
+- **Contact Form** - Functional contact form with email integration (EmailJS)
+- **Certifications Section** - Showcase of food safety certifications with auto-scroll
+- **SEO Optimized** - Semantic HTML structure with meta tags and structured data
 - **Fast Loading** - Optimized assets and code
+- **Mobile-First** - Optimized touch interactions and mobile navigation
 
 ## 📁 Project Structure
 
@@ -82,13 +85,34 @@ The website is ready to deploy to:
 
 ## 📝 Sections
 
-- **Hero** - Main banner with tagline
-- **About** - Company information
-- **Vision & Mission** - Company values
-- **Why Choose Us** - Key differentiators
-- **Products** - Product catalog
-- **Quality & Sustainability** - Quality assurance
-- **Contact** - Contact form and details
+- **Hero** - Main banner with tagline and call-to-action
+- **About** - Company information and values
+- **Vision & Mission** - Company vision and mission statements
+- **Why Choose Us** - Key differentiators and benefits
+- **Products** - Product catalog (Pasteurized Crab Meat, Frozen Fish, etc.)
+- **Certifications** - Food safety certifications with auto-scrolling display
+- **Quality & Sustainability** - Quality assurance and sustainability practices
+- **Contact** - Functional contact form with email integration
+
+## 📧 Contact Form Setup
+
+The contact form uses EmailJS to send form submissions via email. To set it up:
+
+1. See `EMAILJS_SETUP.md` for detailed setup instructions
+2. Get your EmailJS credentials (Public Key, Service ID, Template ID)
+3. Update `main.js` with your credentials (lines 104, 160, 161)
+4. Update the receiving email address (line 165)
+
+## 🚀 Git Repository Setup
+
+To push this project to a Git repository:
+
+1. See `GIT_SETUP.md` for step-by-step instructions
+2. Initialize git: `git init`
+3. Add files: `git add .`
+4. Commit: `git commit -m "Initial commit"`
+5. Add remote: `git remote add origin YOUR_REPO_URL`
+6. Push: `git push -u origin main`
 
 ## 🎨 Color Scheme
 
@@ -110,4 +134,6 @@ MIT License - Feel free to use this project as a template.
 ---
 
 **Premium Seafood, Perfected for the World** 🌊
+
+
 
