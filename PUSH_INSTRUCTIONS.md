@@ -1,7 +1,7 @@
 # Push to GitHub Repository
 
 ## Repository URL
-**https://github.com/sherwynjoel/Deva-Sea-Food-website**
+**https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website**
 
 ## Quick Push Methods
 
@@ -22,9 +22,9 @@ cd "c:\Users\Sherwyn joel\OneDrive\Desktop\Deva Sea Food landing page"
 # Check/Set remote
 git remote -v
 # If remote doesn't exist or is wrong:
-git remote set-url origin https://github.com/sherwynjoel/Deva-Sea-Food-website.git
+git remote set-url origin https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website.git
 # Or add it:
-git remote add origin https://github.com/sherwynjoel/Deva-Sea-Food-website.git
+git remote add origin https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website.git
 
 # Add all files
 git add .
@@ -111,10 +111,10 @@ git push origin main
 ## After Pushing
 
 Your code will be available at:
-**https://github.com/sherwynjoel/Deva-Sea-Food-website**
+**https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website**
 
 You can also set up GitHub Pages for live hosting:
 1. Go to repository Settings → Pages
 2. Select `main` branch
-3. Your site will be live at: `https://sherwynjoel.github.io/Deva-Sea-Food-website/`
+3. Your site will be live at: `https://sherwynjoel.github.io/Deva-Sea-Food-landing-page-website/`
 

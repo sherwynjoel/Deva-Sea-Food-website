@@ -41,20 +41,20 @@ if errorlevel 1 (
     echo No remote repository found!
     echo.
     echo Adding remote repository...
-    git remote add origin https://github.com/sherwynjoel/Deva-Sea-Food-website.git
-    echo Remote added!
-) else (
-    echo Remote repository found.
-    for /f "tokens=2" %%i in ('git remote get-url origin 2^>nul') do set CURRENT_REMOTE=%%i
-    if not "!CURRENT_REMOTE!"=="https://github.com/sherwynjoel/Deva-Sea-Food-website.git" (
-        echo.
-        echo Updating remote URL...
-        git remote set-url origin https://github.com/sherwynjoel/Deva-Sea-Food-website.git
-        echo Remote updated!
+        git remote add origin https://github.com/sherwynjoel/Deva-Sea-Food-website.git
+        echo Remote added!
+    ) else (
+        echo Remote repository found.
+        for /f "tokens=2" %%i in ('git remote get-url origin 2^>nul') do set CURRENT_REMOTE=%%i
+        if not "!CURRENT_REMOTE!"=="https://github.com/sherwynjoel/Deva-Sea-Food-website.git" (
+            echo.
+            echo Updating remote URL...
+            git remote set-url origin https://github.com/sherwynjoel/Deva-Sea-Food-website.git
+            echo Remote updated!
+        )
     )
-)
-echo.
-echo Remote: https://github.com/sherwynjoel/Deva-Sea-Food-website.git
+    echo.
+    echo Remote: https://github.com/sherwynjoel/Deva-Sea-Food-website.git
 echo.
 
 echo.

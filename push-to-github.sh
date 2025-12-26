@@ -37,14 +37,14 @@ REMOTE_URL=$(git remote get-url origin 2>/dev/null)
 
 if [ -z "$REMOTE_URL" ]; then
     echo "No remote configured. Adding remote..."
-    git remote add origin https://github.com/sherwynjoel/Deva-Sea-Food-website.git
-    echo "✓ Remote added: https://github.com/sherwynjoel/Deva-Sea-Food-website.git"
+    git remote add origin https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website.git
+    echo "✓ Remote added: https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website.git"
 else
     echo "Current remote: $REMOTE_URL"
     # Update if different
-    if [ "$REMOTE_URL" != "https://github.com/sherwynjoel/Deva-Sea-Food-website.git" ]; then
+    if [ "$REMOTE_URL" != "https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website.git" ]; then
         echo "Updating remote URL..."
-        git remote set-url origin https://github.com/sherwynjoel/Deva-Sea-Food-website.git
+        git remote set-url origin https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website.git
         echo "✓ Remote updated"
     fi
 fi
@@ -81,7 +81,7 @@ echo ""
 
 # Push to repository
 echo "Pushing to GitHub..."
-echo "Repository: https://github.com/sherwynjoel/Deva-Sea-Food-website"
+echo "Repository: https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website"
 echo "Branch: $BRANCH"
 echo ""
 
@@ -94,7 +94,7 @@ if [ $? -eq 0 ]; then
     echo "=========================================="
     echo ""
     echo "View your repository at:"
-    echo "https://github.com/sherwynjoel/Deva-Sea-Food-website"
+    echo "https://github.com/sherwynjoel/Deva-Sea-Food-landing-page-website"
     echo ""
 else
     echo ""
