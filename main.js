@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+// Ensure animations work even if DOM is already loaded
+const initAllAnimations = () => {
   const navToggle = document.querySelector(".nav-toggle");
   const navLinks = document.querySelector(".nav-links");
   const body = document.body;
@@ -64,43 +65,80 @@ document.addEventListener("DOMContentLoaded", () => {
   // Scroll-triggered animations with mobile performance optimization
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   
-  const observerOptions = {
-    threshold: prefersReducedMotion ? 0 : 0.1,
-    rootMargin: "0px 0px -50px 0px",
+  // Fallback function if IntersectionObserver fails
+  const animateElementsFallback = () => {
+    const sections = document.querySelectorAll(".section");
+    const cards = document.querySelectorAll(".feature-card, .product-card, .column-card, .quality-item");
+    
+    sections.forEach((section, index) => {
+      section.classList.add('animate-ready');
+      setTimeout(() => {
+        section.style.opacity = "1";
+        section.style.transform = "translateY(0)";
+      }, index * 100);
+    });
+    
+    cards.forEach((card, index) => {
+      card.classList.add('animate-ready');
+      setTimeout(() => {
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0)";
+      }, index * 50);
+    });
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // Use requestAnimationFrame for better performance on mobile
-        requestAnimationFrame(() => {
-          entry.target.style.opacity = "1";
-          entry.target.style.transform = "translateY(0)";
+  // Try to use IntersectionObserver, fallback if not available
+  if (typeof IntersectionObserver !== 'undefined') {
+    const observerOptions = {
+      threshold: prefersReducedMotion ? 0 : 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    try {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Use requestAnimationFrame for better performance on mobile
+            requestAnimationFrame(() => {
+              entry.target.style.opacity = "1";
+              entry.target.style.transform = "translateY(0)";
+            });
+            observer.unobserve(entry.target);
+          }
         });
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
+      }, observerOptions);
 
-  // Animate sections on scroll
-  const sections = document.querySelectorAll(".section");
-  sections.forEach((section) => {
-    section.style.opacity = "0";
-    section.style.transform = "translateY(30px)";
-    section.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
-    observer.observe(section);
-  });
+      // Animate sections on scroll
+      const sections = document.querySelectorAll(".section");
+      sections.forEach((section) => {
+        // Add class for CSS fallback
+        section.classList.add('animate-ready');
+        section.style.opacity = "0";
+        section.style.transform = "translateY(30px)";
+        section.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
+        observer.observe(section);
+      });
 
-  // Animate cards on scroll
-  const cards = document.querySelectorAll(
-    ".feature-card, .product-card, .column-card, .quality-item"
-  );
-  cards.forEach((card, index) => {
-    card.style.opacity = "0";
-    card.style.transform = "translateY(20px)";
-    card.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
-    observer.observe(card);
-  });
+      // Animate cards on scroll
+      const cards = document.querySelectorAll(
+        ".feature-card, .product-card, .column-card, .quality-item"
+      );
+      cards.forEach((card, index) => {
+        // Add class for CSS fallback
+        card.classList.add('animate-ready');
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+        card.style.transition = `opacity 0.6s ease-out ${index * 0.1}s, transform 0.6s ease-out ${index * 0.1}s`;
+        observer.observe(card);
+      });
+    } catch (error) {
+      console.warn('IntersectionObserver failed, using fallback:', error);
+      animateElementsFallback();
+    }
+  } else {
+    // IntersectionObserver not supported, use fallback
+    animateElementsFallback();
+  }
 
   // Smooth scroll for anchor links with mobile optimization
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -447,64 +485,94 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 2000);
     }, { passive: true });
 
-    // Initialize carousel animation
+    // Initialize carousel animation with better error handling
     const initializeCarousel = () => {
       if (isInitialized) return;
       
-      // Wait for images to load
-      const images = certificationsGrid.querySelectorAll('img');
-      let imagesLoaded = 0;
-      const totalImages = images.length;
-      
-      if (totalImages === 0) {
-        // No images, start immediately
-        startCarousel();
-        return;
+      try {
+        // Wait for images to load, but don't wait forever
+        const images = certificationsGrid.querySelectorAll('img');
+        let imagesLoaded = 0;
+        const totalImages = images.length;
+        let timeoutId;
+        
+        // Set a maximum wait time (5 seconds)
+        timeoutId = setTimeout(() => {
+          console.log('Carousel: Timeout waiting for images, starting anyway');
+          startCarousel();
+        }, 5000);
+        
+        if (totalImages === 0) {
+          // No images, start immediately
+          clearTimeout(timeoutId);
+          startCarousel();
+          return;
+        }
+        
+        const checkImagesLoaded = () => {
+          imagesLoaded++;
+          if (imagesLoaded >= totalImages) {
+            clearTimeout(timeoutId);
+            // All images loaded, start carousel
+            setTimeout(() => {
+              startCarousel();
+            }, 200);
+          }
+        };
+        
+        images.forEach((img) => {
+          if (img.complete) {
+            checkImagesLoaded();
+          } else {
+            img.addEventListener('load', checkImagesLoaded);
+            img.addEventListener('error', checkImagesLoaded); // Count errors too
+          }
+        });
+      } catch (error) {
+        console.error('Carousel initialization error:', error);
+        // Try to start anyway after a delay
+        setTimeout(() => {
+          startCarousel();
+        }, 1000);
       }
-      
-      const checkImagesLoaded = () => {
-        imagesLoaded++;
-        if (imagesLoaded >= totalImages) {
-          // All images loaded, start carousel
-          setTimeout(() => {
-            startCarousel();
-          }, 200);
-        }
-      };
-      
-      images.forEach((img) => {
-        if (img.complete) {
-          checkImagesLoaded();
-        } else {
-          img.addEventListener('load', checkImagesLoaded);
-          img.addEventListener('error', checkImagesLoaded); // Count errors too
-        }
-      });
     };
     
     const startCarousel = () => {
-      // Ensure clones are created
-      ensureClones();
-      updateWidth();
-      
-      if (singleSetWidth > 0 && !isInitialized) {
-        isInitialized = true;
-        // Reset scroll position to start
-        certificationsGrid.scrollLeft = 0;
-        scrollPosition = 0;
-        // Initial gradient update
-        updateGradients();
-        // Start the animation
-        autoScroll();
-      } else if (singleSetWidth === 0) {
-        // Retry if width is still 0
-        setTimeout(() => {
-          ensureClones();
-          updateWidth();
-          if (singleSetWidth > 0) {
-            startCarousel();
-          }
-        }, 100);
+      try {
+        // Ensure clones are created
+        ensureClones();
+        updateWidth();
+        
+        if (singleSetWidth > 0 && !isInitialized) {
+          isInitialized = true;
+          // Reset scroll position to start
+          certificationsGrid.scrollLeft = 0;
+          scrollPosition = 0;
+          // Initial gradient update
+          updateGradients();
+          // Start the animation
+          autoScroll();
+          console.log('✅ Carousel animation started successfully');
+        } else if (singleSetWidth === 0) {
+          // Retry if width is still 0 (max 10 retries)
+          let retryCount = 0;
+          const maxRetries = 10;
+          const retryInterval = setInterval(() => {
+            retryCount++;
+            ensureClones();
+            updateWidth();
+            if (singleSetWidth > 0 || retryCount >= maxRetries) {
+              clearInterval(retryInterval);
+              if (singleSetWidth > 0) {
+                startCarousel();
+              } else {
+                console.warn('Carousel: Could not calculate width after retries');
+              }
+            }
+          }, 200);
+        }
+      } catch (error) {
+        console.error('Carousel start error:', error);
       }
     };
 
@@ -531,6 +599,14 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-});
+};
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initAllAnimations);
+} else {
+  // DOM already loaded, initialize immediately
+  setTimeout(initAllAnimations, 100);
+}
 
 

@@ -2242,6 +2242,18 @@ html {
   position: relative;
 }
 
+/* Ensure animations work even if JS sets inline styles */
+.section.animate-ready {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.feature-card.animate-ready,
+.product-card.animate-ready,
+.column-card.animate-ready,
+.quality-item.animate-ready {
+  animation: fadeInScale 0.6s ease-out forwards;
+}
+
 .section-heading {
   position: relative;
 }
