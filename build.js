@@ -16,6 +16,8 @@ const filesToCopy = [
   'logo.png',
   'Gemini_Generated_Image_ypm05bypm05bypm0.png',
   'WhatsApp Image 2025-12-15 at 10.09.01 AM.jpeg',
+  'LOGISTICS CHAIN PHOTO.jpg',
+  'A seacfood companeyteam photo showing thumbs up sign.png',
   'vid.mp4',
   'sitemap.xml',
   'robots.txt',
