@@ -6,6 +6,7 @@ import { LiquidBackground } from './ui/LiquidBackground'
 import { ScrollProgress } from './motion/ScrollProgress'
 import { StructuredData } from './StructuredData'
 import { useEffect } from 'react'
+import { BackToTop } from './ui/BackToTop'
 
 export function Layout() {
     const { pathname, hash } = useLocation();
@@ -35,6 +36,7 @@ export function Layout() {
                 <Outlet />
                 <Footer />
             </div>
+            <BackToTop />
         </div>
     )
 }

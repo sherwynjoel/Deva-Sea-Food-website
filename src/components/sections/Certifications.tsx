@@ -81,7 +81,7 @@ export function Certifications() {
                 >
                   <div className="w-32 h-40 bg-white/20 backdrop-blur-md border border-ocean-950/10 rounded-xl p-4 flex flex-col items-center justify-center hover:bg-white/30 transition-colors duration-300 shadow-[0_0_30px_rgba(0,0,0,0.1)]">
                     <div className="w-16 h-16 mb-3 rounded-xl bg-white/90 p-2 flex items-center justify-center shadow-inner">
-                      <img src={cert.src} alt={cert.alt} className="w-full h-full object-contain" />
+                      <img src={cert.src} alt={cert.alt} className="w-full h-full object-contain" loading="lazy" />
                     </div>
                     <span className="text-xs font-bold text-ocean-950 text-center leading-tight">
                       {cert.name}

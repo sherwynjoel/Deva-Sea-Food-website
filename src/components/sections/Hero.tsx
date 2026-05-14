@@ -57,7 +57,7 @@ export function Hero() {
                 <a href={siteContent.hero.ctas.primary.href}>
                   <GlassButton>
                     {siteContent.hero.ctas.primary.label}
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
                   </GlassButton>
                 </a>
                 <a href={siteContent.hero.ctas.secondary.href}>

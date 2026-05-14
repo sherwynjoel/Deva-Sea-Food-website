@@ -169,6 +169,7 @@ export function WhatWeOffer() {
                             src={bgImage}
                             alt=""
                             className="h-full w-full object-cover object-center"
+                            loading="lazy"
                           />
                           {/* Dark overlay for text readability */}
                           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30" />

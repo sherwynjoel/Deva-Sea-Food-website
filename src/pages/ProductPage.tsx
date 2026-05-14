@@ -29,14 +29,14 @@ export function ProductPage() {
                     to="/#portfolio"
                     className="inline-flex items-center gap-2 text-sm font-medium text-ocean-950/80 hover:text-ocean-950 transition-colors mb-8 bg-white/40 px-4 py-2 rounded-full border border-ocean-950/5 hover:bg-white/60"
                 >
-                    <ArrowLeft className="h-4 w-4" />
+                    <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                     Back to Products
                 </Link>
 
                 <Reveal>
                     <div className="flex flex-col gap-2">
                         <span className="inline-flex items-center gap-2 rounded-full border border-ocean-950/10 bg-white/40 px-3 py-1 text-xs font-medium text-ocean-900 w-fit">
-                            <Fish className="h-3 w-3" />
+                            <Fish className="h-3 w-3" aria-hidden="true" />
                             {product.scientific}
                         </span>
                         <h1 className="text-4xl sm:text-5xl font-bold text-ocean-950 tracking-tight mt-2">{product.name}</h1>
@@ -71,7 +71,7 @@ export function ProductPage() {
                                 {product.subProducts.map((sub, idx) => (
                                     <div key={idx} className="flex items-center gap-3 p-3 rounded-lg bg-white/30 border border-white/40">
                                         <div className="h-10 w-10 rounded-full bg-ocean-100 flex items-center justify-center shrink-0 text-ocean-600">
-                                            <Fish className="h-5 w-5" />
+                                            <Fish className="h-5 w-5" aria-hidden="true" />
                                         </div>
                                         <span className="font-medium text-ocean-900">{sub}</span>
                                     </div>
